@@ -29,6 +29,6 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
-          docker build . -t asenskdockreg.azurecr.io/TestGit:${{ github.sha }}
-          docker push asenskdockreg.azurecr.io/TestGit:${{ github.sha }}
+          docker build . -t asenskdockreg.azurecr.io/testgit:${{ github.sha }}
+          docker push asenskdockreg.azurecr.io/testgit:${{ github.sha }}
           
