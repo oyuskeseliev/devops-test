@@ -9,7 +9,7 @@ WORKDIR /build
 
 RUN export GO111MODULE=on
 RUN cd /build && git clone https://github.com/AsennK/devops-test.git
-RUN cd /build/devops-test && go build
+RUN cd /build/devops-test && go build -o main
 
 EXPOSE 8080
 
