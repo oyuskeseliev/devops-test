@@ -24,10 +24,10 @@ jobs:
       - name: Login to ACR 
         uses: azure/docker-login@v1
         with:
-          login-server: asenskdockreg.azurecr.io
+          login-server: tbsdevopstest.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
-          docker build . -t asenskdockreg.azurecr.io/testgit:${{ github.sha }}
-          docker push asenskdockreg.azurecr.io/testgit:${{ github.sha }}
+          docker build . -t tbsdevopstest.azurecr.io/asenimg:${{ github.sha }}
+          docker push tbsdevopstest.azurecr.io/asenimg:${{ github.sha }}
