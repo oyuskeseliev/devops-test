@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: [ main ]
+  release:
+    types:
+      - published
+        
+jobs:
+
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+        
+      - name: Login to ACR
+      - uses: azure/docker-login@v1
+        with:
+          login-server: asenskdockreg.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - run: |
+          docker build . -t asenskdockreg.azurecr.io/testgit:${{ github.sha }}
+          docker push asenskdockreg.azurecr.io/testgit:${{ github.sha }}
