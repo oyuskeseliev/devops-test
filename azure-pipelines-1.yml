@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  name: default
+  
+  vmImage: ubuntu-latest
+
+steps:
+- task: Docker@2
+  displayName: 'Login to ACR'
+  inputs:
+    command: login
+    containerRegistry: 'tbsdevopstest.azurecr.io'    
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'tbsdevopstest.azurecr.io'
+    repository: 'asenazpush'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
